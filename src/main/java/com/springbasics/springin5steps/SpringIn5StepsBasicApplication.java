@@ -1,6 +1,5 @@
 package com.springbasics.springin5steps;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,7 @@ public class SpringIn5StepsBasicApplication {
 
 	public static void main(String[] args) {
 
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(
 				SpringIn5StepsBasicApplication.class);
 
 		BinarySearchImpl binarySearch = applicationContext.getBean(BinarySearchImpl.class);
@@ -29,6 +28,8 @@ public class SpringIn5StepsBasicApplication {
 
 		int result = binarySearch.binarySearch(new int[] { 10, 5, 2 }, 2);
 		System.out.println(result);
+
+		applicationContext.close();
 	}
 
 }

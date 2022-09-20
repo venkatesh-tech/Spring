@@ -2,7 +2,6 @@ package com.springbasics.springin5steps;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +16,7 @@ public class SpringIn5StepsScopeApplication {
 
 	public static void main(String[] args) {
 
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(
 				SpringIn5StepsScopeApplication.class);
 
 		PersonDAO personDao = applicationContext.getBean(PersonDAO.class);
@@ -29,6 +28,8 @@ public class SpringIn5StepsScopeApplication {
 
 		LOGGER.info("{}", personDao2);
 		LOGGER.info("{}", personDao.getJdbcConnection());
+
+		applicationContext.close();
 
 	}
 

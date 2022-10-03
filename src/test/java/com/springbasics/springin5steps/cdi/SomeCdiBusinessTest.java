@@ -1,28 +1,35 @@
 package com.springbasics.springin5steps.cdi;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.*;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import com.springbasics.springin5steps.SpringIn5StepsBasicApplication;
-
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = SpringIn5StepsBasicApplication.class)
+//@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
 public class SomeCdiBusinessTest {
 
-	@Autowired
+	@InjectMocks
 	SomeCdiBusiness business;
+
+	@Mock
+	SomeCdiDao daoMock;
 
 	@Test
 	public void testBasicScenario() {
 
+//		SomeCdiDao daoMock = mock(SomeCdiDao.class);
+		// given
+		when(daoMock.getData()).thenReturn(new int[] { 5, 9 });
+		// when
 		int actualResult = business.findGreatest();
 
-		assertEquals(actualResult, 100);
+		// then
+		assertEquals(9, actualResult);
+
 	}
 
 }
